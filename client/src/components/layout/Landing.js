@@ -1,44 +1,37 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Alert from "../../components/layout/Alert";
 
-export const Landing = ({ isAuthenticated }) => {
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
-  }
-
+const Landing = (props) => {
   return (
-    <section className="landing">
-      <div className="dark-overlay">
-        <div className="landing-inner">
-          <h1 className="x-large">After-Life-Program</h1>
-          <p className="lead">
-            Connect with like minds and share the experience
-          </p>
-          <div className="buttons">
-            <Link to="/register" className="btn btn-primary">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-light">
-              Login
-            </Link>
-            <Link to="/contact" className="btn btn-primary">
-              Contact Form
-            </Link>
+    <Fragment className="container">
+      <Alert />
+      <section className="landing">
+        <div className="dark-overlay">
+          <div className="landing-inner">
+            <h1 className="x-large">Random Layout</h1>
+            <p className="lead">
+              Connect with like minds and share the experience
+            </p>
+            <div className="buttons">
+              <Link to="/register" className="btn btn-primary">
+                Sign Up
+              </Link>
+              <Link to="/login" className="btn btn-light">
+                Login
+              </Link>
+              <Link to="/contact" className="btn btn-primary">
+                Contact Form
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Fragment>
   );
 };
 
-Landing.propTypes = {
-  isAuthenticated: PropTypes.bool,
-};
+Landing.propTypes = {};
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps)(Landing);
+export default Landing;
