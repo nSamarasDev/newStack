@@ -13,6 +13,7 @@ const ContactSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
+    maxlength: [500, "Description cannot be longer than 500 characters"],
   },
   slug: String,
   date: {
