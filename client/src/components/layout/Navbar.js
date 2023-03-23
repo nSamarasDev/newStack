@@ -1,30 +1,18 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const location = useLocation();
+
   const authLinks = (
     <ul>
-      <li>
-        <Link to="/posts">Discussion</Link>
-      </li>
-      <li>
-        <Link to="/loads">Loads</Link>
-      </li>
-      <li>
-        <Link to="/companies">Companies</Link>
-      </li>
-      <li>
-        <Link to="/profiles">Drivers</Link>
-      </li>
-      <li>
-        <Link to="/contacts">Contacts</Link>
-      </li>
-      <li>
-        <Link to="/applications">Applications</Link>
-      </li>
+      {/* <li>
+        <Link to="/contact">Contact</Link>
+      </li> */}
+
       <li>
         <Link to="/dashboard">
           <i className="fas fa-user" />{" "}
@@ -44,13 +32,28 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Drivers</Link>
+        <Link
+          to="/contact"
+          className={location.pathname === "/contact" ? "active" : ""}
+        >
+          Contact
+        </Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <Link
+          to="/register"
+          className={location.pathname === "/register" ? "active" : ""}
+        >
+          Register
+        </Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link
+          to="/login"
+          className={location.pathname === "/login" ? "active" : ""}
+        >
+          Login
+        </Link>
       </li>
     </ul>
   );
@@ -58,8 +61,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <Link to="/">
-          <i className="fas fa-code"></i> Load Board
+        <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+          <i className="fas fa-code"></i> Random
         </Link>
       </h1>
       {!loading && (
